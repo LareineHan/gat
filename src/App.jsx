@@ -4,6 +4,46 @@ import { useState, useEffect, useCallback } from "react";
 // JIEQI DATA  (solar term UTC boundaries)
 // ─────────────────────────────────────────────
 const JIEQI = {
+  1960:[[1,6,11,1],[2,5,5,57],[3,6,13,5],[4,5,8,32],[5,6,0,19],[6,6,3,15],[7,7,12,38],[8,7,13,27],[9,8,9,50],[10,8,18,16],[11,7,21,20],[12,7,12,41]],
+  1961:[[1,5,16,23],[2,3,11,17],[3,6,18,44],[4,5,14,47],[5,6,5,50],[6,6,9,30],[7,7,18,24],[8,7,19,18],[9,8,15,45],[10,8,23,16],[11,8,2,8],[12,7,17,8]],
+  1962:[[1,5,22,18],[2,3,17,17],[3,6,0,30],[4,5,20,22],[5,6,11,57],[6,6,15,19],[7,7,23,52],[8,8,1,7],[9,8,21,17],[10,9,4,55],[11,8,8,2],[12,7,22,55]],
+  1963:[[1,6,4,9],[2,3,23,9],[3,6,6,8],[4,5,2,4],[5,5,17,59],[6,5,21,4],[7,7,5,20],[8,7,6,10],[9,8,3,24],[10,8,10,44],[11,7,13,17],[12,7,4,4]],
+  1964:[[1,6,9,39],[2,4,4,57],[3,5,11,35],[4,4,8,27],[5,5,0,28],[6,5,3,56],[7,6,14,5],[8,6,16,48],[9,7,13,17],[10,8,2,17],[11,7,5,19],[12,6,20,21]],
+  1965:[[1,5,15,27],[2,3,11,46],[3,5,17,5],[4,4,13,46],[5,5,6,15],[6,5,9,56],[7,6,19,47],[8,6,22,42],[9,7,18,33],[10,8,3,39],[11,7,6,29],[12,7,1,43]],
+  1966:[[1,5,21,19],[2,3,17,37],[3,5,22,53],[4,4,19,8],[5,5,11,49],[6,5,14,34],[7,7,1,23],[8,7,4,18],[9,8,0,18],[10,8,9,8],[11,7,12,14],[12,7,3,7]],
+  1967:[[1,6,3,9],[2,3,23,22],[3,6,5,37],[4,5,0,55],[5,5,17,19],[6,5,21,14],[7,7,6,40],[8,7,9,16],[9,8,6,13],[10,8,13,44],[11,7,17,6],[12,7,8,16]],
+  1968:[[1,6,8,29],[2,4,5,8],[3,5,11,22],[4,4,7,40],[5,4,22,49],[6,5,2,14],[7,6,12,48],[8,6,14,58],[9,7,11,26],[10,8,0,31],[11,7,3,30],[12,6,18,15]],
+  1969:[[1,5,14,0],[2,3,10,55],[3,5,17,8],[4,4,13,16],[5,5,5,50],[6,5,8,55],[7,6,18,26],[8,6,21,8],[9,7,17,7],[10,8,1,42],[11,7,4,52],[12,6,23,28]],
+  1970:[[1,5,19,57],[2,3,16,46],[3,5,22,56],[4,4,18,57],[5,5,11,14],[6,5,14,43],[7,7,0,36],[8,7,2,43],[9,7,23,59],[10,8,8,20],[11,7,10,50],[12,7,5,35]],
+  1971:[[1,6,1,12],[2,3,22,26],[3,6,4,24],[4,5,0,54],[5,5,17,16],[6,5,20,20],[7,7,6,15],[8,7,7,46],[9,8,4,46],[10,8,13,3],[11,7,16,14],[12,7,6,58]],
+  1972:[[1,6,7,14],[2,4,4,11],[3,5,10,21],[4,4,6,37],[5,4,23,0],[6,5,2,5],[7,6,12,4],[8,6,14,3],[9,7,10,47],[10,7,23,41],[11,7,2,23],[12,6,17,8]],
+  1973:[[1,5,12,49],[2,3,9,37],[3,5,15,56],[4,4,12,31],[5,5,5,10],[6,5,8,1],[7,6,17,34],[8,6,19,53],[9,7,16,35],[10,8,1,0],[11,7,4,0],[12,6,22,39]],
+  1974:[[1,5,18,45],[2,3,15,59],[3,5,21,46],[4,4,17,19],[5,5,10,38],[6,5,13,37],[7,6,23,28],[8,7,1,6],[9,7,21,55],[10,8,6,40],[11,7,9,11],[12,7,3,56]],
+  1975:[[1,6,0,36],[2,3,21,50],[3,6,3,57],[4,4,23,19],[5,5,16,23],[6,5,19,26],[7,7,5,24],[8,7,7,27],[9,8,3,31],[10,8,12,1],[11,7,14,51],[12,7,6,6]],
+  1976:[[1,6,6,15],[2,4,3,40],[3,5,9,50],[4,4,5,21],[5,4,21,24],[6,5,1,24],[7,6,11,19],[8,6,13,18],[9,7,9,49],[10,7,23,34],[11,7,2,9],[12,6,17,35]],
+  1977:[[1,5,12,0],[2,3,8,31],[3,5,15,43],[4,4,11,57],[5,5,4,49],[6,5,7,14],[7,6,17,3],[8,6,18,25],[9,7,15,29],[10,8,0,1],[11,7,3,33],[12,6,22,21]],
+  1978:[[1,5,17,27],[2,3,14,27],[3,5,21,25],[4,4,17,42],[5,5,10,9],[6,5,13,10],[7,6,22,55],[8,7,0,13],[9,7,21,1],[10,8,5,25],[11,7,8,10],[12,7,3,7]],
+  1979:[[1,5,23,9],[2,3,20,13],[3,6,3,22],[4,4,23,35],[5,5,15,52],[6,5,19,2],[7,7,4,49],[8,7,5,48],[9,8,2,40],[10,8,10,48],[11,7,13,43],[12,7,8,43]],
+  1980:[[1,6,4,49],[2,4,1,48],[3,5,9,10],[4,4,4,22],[5,4,21,42],[6,5,0,47],[7,6,10,42],[8,6,12,9],[9,7,9,0],[10,7,22,14],[11,7,1,14],[12,6,16,21]],
+  1981:[[1,5,10,36],[2,3,7,31],[3,5,14,3],[4,4,10,3],[5,5,2,40],[6,5,6,44],[7,6,16,24],[8,6,17,56],[9,7,14,51],[10,8,3,19],[11,7,6,36],[12,6,21,51]],
+  1982:[[1,5,16,19],[2,3,13,31],[3,5,19,55],[4,4,15,58],[5,5,8,23],[6,5,11,24],[7,6,21,24],[8,6,23,18],[9,7,20,46],[10,8,4,18],[11,7,7,22],[12,7,3,10]],
+  1983:[[1,5,22,8],[2,3,19,31],[3,6,1,39],[4,4,21,40],[5,5,14,6],[6,5,17,9],[7,7,3,4],[8,7,4,8],[9,8,2,7],[10,8,10,28],[11,7,12,37],[12,7,8,46]],
+  1984:[[1,6,3,57],[2,4,1,19],[3,5,7,24],[4,4,3,38],[5,4,19,58],[6,4,23,52],[7,6,9,57],[8,6,11,34],[9,7,7,36],[10,7,16,46],[11,6,18,11],[12,6,13,29]],
+  1985:[[1,5,9,58],[2,3,6,41],[3,5,13,14],[4,4,9,26],[5,5,2,3],[6,5,5,12],[7,6,15,6],[8,6,16,36],[9,7,13,42],[10,8,1,25],[11,7,5,24],[12,6,20,7]],
+  1986:[[1,5,15,46],[2,3,12,43],[3,5,19,3],[4,4,15,12],[5,5,7,27],[6,5,11,30],[7,6,21,25],[8,6,22,52],[9,7,19,0],[10,8,6,36],[11,7,10,45],[12,7,2,3]],
+  1987:[[1,5,21,41],[2,3,18,52],[3,6,0,52],[4,4,20,57],[5,5,13,9],[6,5,17,11],[7,7,3,5],[8,7,4,9],[9,8,1,9],[10,8,12,28],[11,7,16,29],[12,7,7,46]],
+  1988:[[1,6,3,27],[2,4,0,34],[3,5,6,39],[4,4,2,9],[5,4,19,3],[6,5,2,34],[7,6,8,54],[8,6,10,14],[9,7,6,29],[10,7,18,48],[11,6,21,12],[12,6,12,28]],
+  1989:[[1,5,9,7],[2,3,5,20],[3,5,12,28],[4,4,7,39],[5,5,0,22],[6,5,4,53],[7,6,14,6],[8,6,15,46],[9,7,12,20],[10,8,0,35],[11,7,3,21],[12,6,17,22]],
+  1990:[[1,5,15,17],[2,3,11,14],[3,5,18,19],[4,4,13,27],[5,5,5,44],[6,5,10,33],[7,6,19,39],[8,6,21,0],[9,7,17,48],[10,8,6,11],[11,7,9,14],[12,6,23,7]],
+  1991:[[1,5,21,8],[2,3,17,8],[2,3,17,8],[4,4,19,9],[5,5,11,22],[6,5,15,2],[7,7,1,5],[8,7,2,53],[9,7,23,49],[10,8,7,51],[11,7,11,36],[12,7,5,8]],
+  1992:[[1,6,2,48],[2,3,22,43],[3,5,5,12],[4,4,1,3],[5,4,17,12],[6,5,0,14],[7,6,10,8],[8,6,12,10],[9,7,8,34],[10,7,17,13],[11,6,20,27],[12,6,11,44]],
+  1993:[[1,5,8,4],[2,3,4,34],[3,5,11,41],[4,4,7,49],[5,5,0,57],[6,5,5,0],[7,6,15,55],[8,6,17,50],[9,7,14,22],[10,7,22,37],[11,7,2,3],[12,6,16,26]],
+  1994:[[1,5,14,24],[2,3,10,31],[3,5,17,31],[4,4,13,36],[5,5,6,32],[6,5,10,48],[7,6,20,41],[8,6,22,43],[9,7,19,20],[10,8,4,4],[11,7,7,4],[12,6,22,23]],
+  1995:[[1,5,20,13],[2,3,16,13],[3,5,22,14],[4,4,18,22],[5,5,11,21],[6,5,15,34],[7,7,2,8],[8,7,4,14],[9,8,0,13],[10,8,8,31],[11,7,12,0],[12,7,3,18]],
+  1996:[[1,6,1,53],[2,3,21,52],[3,5,4,4],[4,4,0,4],[5,4,17,19],[6,4,20,23],[7,6,7,19],[8,6,9,23],[9,7,5,0],[10,7,13,37],[11,6,17,19],[12,6,8,56]],
+  1997:[[1,5,7,43],[2,3,3,43],[3,5,9,43],[4,4,5,3],[5,4,22,18],[6,5,2,20],[7,6,12,15],[8,6,14,19],[9,7,10,30],[10,7,19,16],[11,6,22,52],[12,6,14,7]],
+  1998:[[1,5,13,46],[2,3,9,55],[3,5,15,55],[4,4,10,55],[5,5,3,55],[6,5,7,3],[7,6,16,55],[8,6,19,1],[9,7,16,1],[10,8,0,10],[11,7,4,10],[12,6,20,1]],
+  1999:[[1,5,19,38],[2,3,15,47],[3,5,21,46],[4,4,17,46],[5,5,9,22],[6,5,13,22],[7,6,22,51],[8,7,0,12],[9,7,21,27],[10,8,5,51],[11,7,9,7],[12,7,0,21]],
   2000:[[1,6,17,17],[2,4,13,3],[3,5,20,35],[4,4,17,15],[5,5,10,1],[6,5,14,1],[7,7,0,19],[8,7,1,46],[9,7,22,49],[10,8,7,8],[11,7,10,1],[12,7,1,32]],
   2001:[[1,5,23,17],[2,3,18,52],[3,5,2,31],[4,4,22,52],[5,5,15,45],[6,5,19,53],[7,7,6,7],[8,7,7,53],[9,8,4,54],[10,8,12,57],[11,7,15,53],[12,7,7,11]],
   2002:[[1,6,5,9],[2,4,0,43],[3,6,8,16],[4,5,4,55],[5,6,21,31],[6,6,1,44],[7,7,11,55],[8,7,13,55],[9,8,10,55],[10,8,18,55],[11,7,21,55],[12,7,13,4]],
@@ -135,7 +175,7 @@ function calcBazi(yr, mo, dy, hr, mi, tz, noTime) {
   const prod  = { Wood:'Water', Fire:'Wood', Earth:'Fire', Metal:'Earth', Water:'Metal' };
   const strong = (ec[prod[dmEl]] + ec[dmEl]) / tot > 0.38;
 
-  return { pillars, dm: { si:dSI, el:dmEl, pol:dmPol, name:STEM_ROM[dSI], kor:STEM_KOR[dSI], char:STEMS[dSI] }, ec, tot, strong };
+  return { pillars, dm: { si:dSI, el:dmEl, pol:dmPol, name:STEM_ROM[dSI], kor:STEM_KOR[dSI], char:STEMS[dSI] }, ec, tot, strong, monthBranch: mBI, birthUTC: utc, birthYear: new Date(utc).getUTCFullYear(), jieqiSol: sol };
 }
 
 // ─────────────────────────────────────────────
@@ -417,6 +457,448 @@ function mbtiToScores(axes) {
   return s;
 }
 
+
+// ─────────────────────────────────────────────
+// 旺相休囚死 SEASONAL STRENGTH THEORY
+// 계절이론: 일간 오행이 월지 계절에 따라 강약 변화
+//
+// Reference: 三命通會 (Sanming Tonghui), 淵海子平 (Yuanhai Ziping)
+// Month branch → season mapping (solar calendar, hemisphere-independent)
+// 寅卯辰(2-4) = Spring/Wood season
+// 巳午未(5-7) = Summer/Fire season  
+// 申酉戌(8-10) = Autumn/Metal season
+// 亥子丑(11-1) = Winter/Water season
+// Earth element: transitions between seasons (辰戌丑未 months)
+// ─────────────────────────────────────────────
+
+// 旺相休囚死 table: dayMaster element × month season → strength rating
+// 旺(Wang)=4: peak season  相(Xiang)=3: supported  休(Xiu)=2: resting
+// 囚(Qiu)=1: restrained    死(Si)=0: exhausted
+const WANGXIANG = {
+  //          Spring  Summer  Autumn  Winter  EarthSeason
+  //          寅卯辰   巳午未   申酉戌   亥子丑   辰戌丑未
+  Wood:   [    4,      2,      0,      3,      1    ],
+  Fire:   [    3,      4,      1,      0,      2    ],
+  Earth:  [    1,      3,      2,      0,      4    ],
+  Metal:  [    0,      1,      4,      2,      3    ],
+  Water:  [    2,      0,      3,      4,      1    ],
+};
+
+// Month branch index → season index
+// 0=子(winter) 1=丑(earth) 2=寅(spring) 3=卯(spring) 4=辰(earth)
+// 5=巳(summer) 6=午(summer) 7=未(earth) 8=申(autumn) 9=酉(autumn)
+// 10=戌(earth) 11=亥(winter)
+const MONTH_SEASON = [3,4,0,0,4,1,1,4,2,2,4,3]; // 0=spring 1=summer 2=autumn 3=winter 4=earth
+
+function getSeasonalProfile(dmEl, monthBranch) {
+  const seasonIdx = MONTH_SEASON[monthBranch] ?? 0;
+  const strength = WANGXIANG[dmEl]?.[seasonIdx] ?? 2;
+  const seasonNames = ['Spring','Summer','Autumn','Winter','Earth-transition'];
+  const seasonKor   = ['봄','여름','가을','겨울','환절기'];
+  const branchNames = ['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥'];
+
+  // Strength band: 旺(4) 相(3) → 身强 strong; 休(2) → neutral; 囚(1) 死(0) → 身弱 weak
+  const band = strength >= 3 ? 'strong' : strength === 2 ? 'neutral' : 'weak';
+
+  const strengthStr = ['Depleted','Restrained','Resting','Supported','Peak'][strength];
+  const labels = {
+    strong:  { badge:'In-season · ' + strengthStr, en:'Season-Strong', desc:'Your element is in its peak season — energy is naturally amplified.' },
+    neutral: { badge:'Between seasons · ' + strengthStr, en:'Balanced', desc:'Your element is between seasons — stable but not amplified.' },
+    weak:    { badge:'Out of season · ' + strengthStr, en:'Season-Weak', desc:'Your element is out of season — energy runs deeper and more internal.' },
+  };
+
+  return {
+    strength, band, seasonIdx,
+    season: seasonNames[seasonIdx],
+    monthChar: branchNames[monthBranch],
+    label: labels[band],
+  };
+}
+
+// Seasonal style modifier per archetype × strength band
+// These MODIFY the existing archetype — they don't replace it
+const SEASONAL_MODIFIERS = {
+  builder: {
+    strong:  {
+      style: `External Builder`,
+      insight: `Your structural energy is amplified by the season — a natural advantage for leading projects, setting direction, and building at scale. You work best when given full ownership.`,
+      careerLens: `Lean toward roles with high ownership and scope. This configuration drives well in environments that move fast and reward decisive system-building.`,
+      watch: `Overextension risk is higher — you have energy to take on more than is wise. Define scope boundaries before committing.`,
+    },
+    neutral: {
+      style: `Steady Builder`,
+      insight: `Consistent, methodical energy — not the most amplified, but highly reliable. You build well over long cycles without burning out.`,
+      careerLens: `Stable, process-oriented environments suit you best. You're well-matched for roles that compound over time rather than sprint.`,
+      watch: `Momentum can plateau. Deliberately inject new constraints or problems to stay engaged.`,
+    },
+    weak:    {
+      style: `Deep Builder`,
+      insight: `Your structural instinct is strong but internally directed — you think in systems more than you broadcast them. Best work happens in focused, low-distraction environments.`,
+      careerLens: `Individual contributor or small-team roles where depth is valued over visibility. Your systems thinking is real — it just needs the right container.`,
+      watch: `Visibility matters for career advancement. Periodically surface your work even when you'd rather stay in the process.`,
+    },
+  },
+  analyst: {
+    strong:  {
+      style: `Expansive Analyst`,
+      insight: `Analytical energy is at its sharpest — pattern recognition, synthesis, and insight generation are all heightened. This is the configuration that produces breakthrough analysis.`,
+      careerLens: `High-complexity, high-stakes roles are your lane right now. Research leadership, senior advisory, or founding roles in data-intensive fields.`,
+      watch: `Overconfidence in your own conclusions. The sharpest analysts also build in adversarial testing of their own work.`,
+    },
+    neutral: {
+      style: `Grounded Analyst`,
+      insight: `Analytical depth is solid and consistent. You're not in a peak output cycle, but your judgment is reliable and your conclusions hold up well under scrutiny.`,
+      careerLens: `Execution-oriented analyst roles — where the value is in reliable, consistent output rather than breakthrough insight.`,
+      watch: `Intellectual restlessness. Seek problems that have genuine depth, not just complexity.`,
+    },
+    weak:    {
+      style: `Focused Analyst`,
+      insight: `Analytical energy is more conserved and internal. Your insights run deep but are slow to surface — you need time and low noise to produce your best work.`,
+      careerLens: `Research, independent analysis, and roles where you control the pace and depth of your work. Avoid high-pressure, rapid-fire analytical environments.`,
+      watch: `Undervaluing your own conclusions. Slow-built insight is often more durable than fast analysis — trust it.`,
+    },
+  },
+  connector: {
+    strong:  {
+      style: `Magnetic Connector`,
+      insight: `Social and relational energy is at its peak — your read on people, your ability to bridge, and your presence in conversations are all amplified. People are drawn to you naturally right now.`,
+      careerLens: `High-visibility roles — leadership, business development, community-building, public-facing positions. This configuration drives well in environments that run on relationships.`,
+      watch: `Saying yes to too many people. Your capacity to connect is high, but it's not unlimited.`,
+    },
+    neutral: {
+      style: `Reliable Connector`,
+      insight: `Steady, warm relational energy. Not at peak amplification, but deeply trustworthy — people feel safe with you over time rather than immediately drawn.`,
+      careerLens: `Long-cycle relationship roles — account management, partnership development, mentorship. You're built for depth, not breadth.`,
+      watch: `Underinvesting in your own network. Reliable connectors sometimes focus entirely on others and neglect building their own strategic relationships.`,
+    },
+    weak:    {
+      style: `Selective Connector`,
+      insight: `Relational energy is more internalized — you connect deeply with a small number of people rather than widely. One strong relationship you build is worth ten surface ones.`,
+      careerLens: `Roles with small, high-trust team structures. Avoid large-scale networking or high-volume relationship management roles — your energy doesn't scale that way.`,
+      watch: `Isolation risk. Make deliberate effort to maintain key relationships even when social energy is low.`,
+    },
+  },
+  creator: {
+    strong:  {
+      style: `Expressive Creator`,
+      insight: `Creative energy is externalized and amplified — this is the configuration that produces visible, bold work. Your taste is sharp, your output is prolific, and your instincts are accurate.`,
+      careerLens: `High-visibility creative roles — creative direction, public-facing design, brand leadership. This is when you should be showing work, not refining it in private.`,
+      watch: `Prolificity can dilute quality. Apply your amplified energy to fewer, better things.`,
+    },
+    neutral: {
+      style: `Refined Creator`,
+      insight: `Creative energy is stable and discerning. Not at peak output, but your taste is highly calibrated — you're better at editing, curating, and refining than at generating volume.`,
+      careerLens: `Curation, creative strategy, and editing-intensive roles. Your value right now is in the quality of your judgment, not the volume of your output.`,
+      watch: `Perfectionism risk. Stable energy can create a loop of endless refinement. Set a "done" line.`,
+    },
+    weak:    {
+      style: `Internalized Creator`,
+      insight: `Creative energy is running deep and private — your best ideas are forming below the surface. This is often the phase just before a creative breakthrough.`,
+      careerLens: `Deep-focus creative work — writing, research-based creation, long-form projects. Avoid roles that require constant public creative output on short deadlines.`,
+      watch: `Don't mistake this for a creative block. The internalization IS the work. Give it time.`,
+    },
+  },
+};
+
+function getSeasonalModifier(archetypeId, band) {
+  return SEASONAL_MODIFIERS[archetypeId]?.[band] || null;
+}
+
+// ─────────────────────────────────────────────────────────────
+// CAREER TIMING ENGINE
+// Decennial Luck Cycles (大運) + Annual Luck (歲運)
+// Based on: Zi Ping methodology, solar calendar Jieqi boundaries
+// ─────────────────────────────────────────────────────────────
+
+// Ten Influences — the relationship between Day Master and any stem
+// Determines the "flavor" of each decade
+function getTenInfluence(dmEl, dmPol, targetEl, targetPol) {
+  const generates = { Wood:'Fire', Fire:'Earth', Earth:'Metal', Metal:'Water', Water:'Wood' };
+  const controls  = { Wood:'Earth', Fire:'Metal', Earth:'Water', Metal:'Wood', Water:'Fire' };
+  const sameEl = dmEl === targetEl;
+  const samePol = dmPol === targetPol;
+  if (sameEl)                             return samePol ? 'Peer'      : 'Rival';
+  if (generates[dmEl] === targetEl)       return samePol ? 'Output'    : 'Expression';
+  if (controls[dmEl] === targetEl)        return samePol ? 'Windfall'  : 'Wealth';
+  if (controls[targetEl] === dmEl)        return samePol ? 'Pressure'  : 'Authority';
+  if (generates[targetEl] === dmEl)       return samePol ? 'Mentor'    : 'Resource';
+  return 'Peer';
+}
+
+const INFLUENCE_META = {
+  Peer:       { label:'Peer',       theme:'Independence · Self-reliance',   color:'#7a9e6e' },
+  Rival:      { label:'Rival',      theme:'Competition · Challenge',        color:'#5a8e5e' },
+  Expression: { label:'Expression', theme:'Creativity · Skill display',     color:'#c06030' },
+  Output:     { label:'Output',     theme:'Innovation · Breaking norms',    color:'#b05020' },
+  Wealth:     { label:'Wealth',     theme:'Execution · Real-world results', color:'#a88840' },
+  Windfall:   { label:'Windfall',   theme:'Opportunity · Expansion',        color:'#c09820' },
+  Authority:  { label:'Authority',  theme:'Structure · Formal recognition', color:'#8896a0' },
+  Pressure:   { label:'Pressure',   theme:'Challenge · Growth through friction', color:'#6876a0' },
+  Resource:   { label:'Resource',   theme:'Learning · Credentials',         color:'#5080a0' },
+  Mentor:     { label:'Mentor',     theme:'Intuition · Unconventional path',color:'#3860a0' },
+};
+
+// ─────────────────────────────────────────────────────────────
+// CAREER TIMING CONTENT
+// Structure: decade context (what kind of energy this 10yr brings)
+//            + cross_reading (decade × annual year = combined NOW insight)
+//            + now_actions (2 concrete things to do in the next 3 months)
+// ─────────────────────────────────────────────────────────────
+
+// Decade context — brief, what the 10-year window is fundamentally about
+const DECADE_CONTEXT = {
+  builder: {
+    Peer:       `An independence decade. The conditions favor building something under your own name — your energy aligns with itself, which makes self-directed work unusually effective right now.`,
+    Rival:      `A competitive pressure decade. External challengers are testing your systems. Uncomfortable, but the builders who come out of Rival decades are the most credible ones in the room.`,
+    Expression: `A visibility decade. Your craft is ready to find an audience. The work you've been building in private wants to surface — this decade rewards showing, not hiding.`,
+    Output:     `A disruption decade. Standard approaches feel inadequate because you can see better ways. This is when builders ship their most unconventional — and often most consequential — work.`,
+    Wealth:     `An execution decade. Ideas convert to outcomes. The decade where plans become real products, real revenue, real systems that other people depend on.`,
+    Windfall:   `An expansion decade. Scope grows beyond what you planned — larger teams, bigger problems, unexpected markets. The risk is spreading too thin. The opportunity is building infrastructure that compounds.`,
+    Authority:  `A leadership decade. Organizational structure moves in your favor. The builder who has been delivering earns a formal seat at the table.`,
+    Pressure:   `A proving decade. Tight constraints, high stakes, external demands. Uncomfortable — but the builder who navigates this intact becomes the most trusted one in any room.`,
+    Resource:   `A foundation decade. The return is in what you build underneath — deep technical skill, credentials, mentorship. What you accumulate now drives the following two decades.`,
+    Mentor:     `An unconventional thinking decade. Unusual approaches outperform standard ones. The builder who thinks differently in this decade builds the most distinctive body of work.`,
+  },
+  analyst: {
+    Peer:       `A collaborative inquiry decade. Working alongside people who think like you sharpens your own thinking. The analyst compounds fastest with genuine intellectual exchange.`,
+    Rival:      `A contested conclusions decade. Your analysis will be challenged — and that's where the value is. The analyst who can defend and revise under pressure becomes the most trusted voice.`,
+    Expression: `A publication decade. Insights that have been forming in private are ready to surface. The analyst who externalizes their thinking now builds the most durable reputation.`,
+    Output:     `A paradigm-questioning decade. Standard frameworks feel insufficient. This is when analysts do their most heterodox, highest-impact work — the questions the field has been avoiding.`,
+    Wealth:     `An applied research decade. Analysis connects to real decisions and outcomes. The analyst who turns insight into action earns the most leverage this decade.`,
+    Windfall:   `An expanded scope decade. Your analytical domain widens unexpectedly. Cross-industry moves, new data territories — the analyst who stays flexible discovers their most productive area.`,
+    Authority:  `A recognition decade. Analytical credibility earns formal authority. The transition from individual contributor to knowledge leader happens in decades like this.`,
+    Pressure:   `A high-stakes decade. Real decisions depend on your conclusions — with imperfect information and limited time. The discipline you build here determines your ceiling.`,
+    Resource:   `A depth decade. Go deep on one domain. The analyst who builds genuine depth now emerges with a differentiated knowledge base that takes competitors years to replicate.`,
+    Mentor:     `An intuitive breakthrough decade. Logic alone doesn't explain what you're seeing — trust it. The analyst's most original work often emerges here, before the world has language for it.`,
+  },
+  connector: {
+    Peer:       `A community-building decade. Like-minded collaborators appear. The connector's most natural decade — invest in relationships that feel easy, because they're the ones that compound.`,
+    Rival:      `A relational tension decade. Partnerships get tested, competing interests surface. Uncomfortable — but you come out with a much clearer sense of who your actual allies are.`,
+    Expression: `A teaching decade. Knowledge flows outward. The connector who teaches what they know now builds the highest-leverage reputation. People remember who made complex things clear.`,
+    Output:     `A boundary-crossing decade. Bridges form across industries and disciplines that wouldn't normally connect. The connector in this decade creates the most unconventional — and often most valuable — relationships.`,
+    Wealth:     `A conversion decade. Relationships translate into real partnerships, contracts, collaborations. The connector who has been building trust now converts it into tangible results.`,
+    Windfall:   `An unexpected alliances decade. The most consequential connections come from unexpected directions. The connector who's too focused on planned outreach misses the most important introductions.`,
+    Authority:  `A leadership decade. Relational capital earns formal authority. The connector becomes the person everyone routes important conversations through.`,
+    Pressure:   `A high-stakes mediation decade. Conflict, difficult negotiations, broken trust — you're in the room when things are most complicated. The rarest skill gets built here.`,
+    Resource:   `A receiving decade. Good mentors, strong advocates, institutional backing. The connector who is generous in receiving as well as giving builds the most resilient network.`,
+    Mentor:     `An instinctive connections decade. You meet people before you know why they matter. Follow the instinct — the connector in this decade makes introductions that look inexplicable until years later.`,
+  },
+  creator: {
+    Peer:       `A creative community decade. Fellow makers, collaborators, critics who get it. The creator's best work rarely happens in isolation — Peer decades provide the audience and friction needed to develop a real voice.`,
+    Rival:      `A style-under-pressure decade. Your taste gets tested against competing aesthetics. The creator who survives this with their voice intact has something real.`,
+    Expression: `A prolific output decade. The creator's most naturally productive decade — energy flows outward without forcing it. This is not the decade to sit on ideas.`,
+    Output:     `A reinvention decade. Existing forms feel inadequate. New mediums, hybrid approaches, genre-crossing — this is when creators make their most experimental and often most influential work.`,
+    Wealth:     `A creative business decade. Work converts to income. The creator who has been developing taste and skill earns real returns — clients, commissions, commercial projects. Don't undersell the work.`,
+    Windfall:   `An unexpected reach decade. Audiences and platforms appear from unexpected directions. The breakout moment that feels arbitrary is not — it's compounded previous work finding the right channel.`,
+    Authority:  `A creative leadership decade. Individual craft scales to direction. The creator who earns authority now sets the aesthetic standard others execute against.`,
+    Pressure:   `A professional discipline decade. Deadlines, client constraints, external expectations. The creator learns to finish under pressure without compromising what matters. The most commercially capable creators are forged here.`,
+    Resource:   `A deep study decade. Go back to source material. Masters you admire, disciplines you haven't studied. The creator who invests in learning now produces their most technically accomplished work in the decades that follow.`,
+    Mentor:     `A singular instinct decade. Strange references, inexplicable aesthetic pulls, work that doesn't fit any category — follow it. The creator's most original output often emerges here.`,
+  },
+};
+
+// Cross-reading: decade influence × annual year influence → combined NOW insight
+// Format: { headline, body, actions: [string, string] }
+// 10 × 10 = 100 combinations per archetype — we cover the most common pairings
+// and use smart fallbacks for the rest
+
+function getCrossReading(archetypeId, decadeInf, annualInf) {
+  // Specific 2026 year cross-readings (annualInf for 2026 丙午 varies by DM)
+  // We generate contextual insight by combining decade + annual energy types
+  const decadeMeta = INFLUENCE_META[decadeInf];
+  const annualMeta = INFLUENCE_META[annualInf];
+
+  // Archetype-specific cross-reading logic
+  const cross = CROSS_READINGS[archetypeId]?.[decadeInf]?.[annualInf];
+  if (cross) return cross;
+
+  // Smart fallback: generate from decade + annual meta
+  return buildFallbackCross(archetypeId, decadeInf, annualInf, decadeMeta, annualMeta);
+}
+
+function buildFallbackCross(archetypeId, decadeInf, annualInf, dMeta, aMeta) {
+  // Tension or alignment?
+  const aligned = ['Peer','Expression','Wealth','Windfall'].includes(annualInf);
+  const challenging = ['Rival','Pressure','Output'].includes(annualInf);
+
+  const archetypeActions = {
+    builder:   ['Identify one system or process you can own end-to-end this quarter', 'Ship something — even a prototype. Visible output now compounds into the decade.'],
+    analyst:   ['Pick one question you\u2019ve been circling and commit to publishing your take', 'Find one person whose thinking sharpens yours and create a reason to exchange ideas'],
+    connector: ['Map your current network: who\u2019s drifted, who\u2019s new, who you\u2019ve been meaning to reach', 'Initiate one introduction this month that serves both parties — pure connector move'],
+    creator:   ['Identify what work you\u2019ve been holding back and set a ship date for it', 'Define what \u201cdone\u201d looks like for one project — and hold that line'],
+  };
+
+  const tone = challenging
+    ? `2026 brings ${aMeta.theme.toLowerCase()} energy into your ${dMeta.theme.toLowerCase()} decade. The friction is intentional — this year is calibrating something.`
+    : `2026's ${aMeta.theme.toLowerCase()} energy amplifies what this decade is already building. The conditions are aligned — use them.`;
+
+  return {
+    headline: `${dMeta.label} decade · ${aMeta.label} year`,
+    body: tone,
+    actions: archetypeActions[archetypeId] || ['Focus on what you can control', 'Take one concrete step forward this week'],
+  };
+}
+
+// Specific cross-readings for high-signal combinations
+const CROSS_READINGS = {
+  builder: {
+    Wealth: {
+      Rival:     { headline: `Execute under scrutiny`, body: `Your decade says build real things — your year says do it while being watched and compared. That combination is uncomfortable but it's also the fastest credibility engine. Ship the thing others are debating. Let the output answer the competition.`, actions: [`Launch or finalize one project that's been "almost ready" — the year's competitive energy means the window is now`, `Document your build process publicly (blog, GitHub, LinkedIn). Wealth decade means the work needs to be visible to convert.`] },
+      Authority: { headline: `Build toward ownership`, body: `Execution energy this decade, structure and recognition this year. This is the rare combination where doing the work and being recognized for it happen in the same window. Push for formal ownership — title, scope, credit.`, actions: [`Identify one area where you're doing the work but not getting the ownership — make the ask`, `Deliver one high-visibility project from start to finish, solo or as clear lead`] },
+      Expression:{ headline: `Make the work visible`, body: `Wealth decade means converting skill into outcomes. Expression year means the channel is open. This is the combination where showing your work earns disproportionate returns — what you demonstrate now lands harder than it would in other years.`, actions: [`Create one public artifact of your best work — case study, writeup, demo`, `Reach out to 3 people you want to work with. Expression energy makes cold outreach land better than usual.`] },
+      Peer:      { headline: `Build with someone`, body: `Your execution decade gains traction through collaboration this year. Find the person whose skills complement yours and build something together. Peer year means the right co-builder is findable right now.`, actions: [`Identify one person you've wanted to collaborate with and propose a concrete, scoped project`, `Join or form one small group of builders in your space — the network compounds into the decade`] },
+      Windfall:  { headline: `Say yes to bigger scope`, body: `Execution decade, unexpected opportunity year. The combination means something larger than you planned is available — and your decade gives you the capacity to execute on it. The risk of undershooting is higher than the risk of overreaching right now.`, actions: [`Identify the biggest opportunity in your current field and find one concrete way to pursue it`, `Raise your ask — in rates, scope, or role. Windfall years reward reaching.`] },
+      Resource:  { headline: `Invest to multiply`, body: `Your execution decade accelerates when you upgrade your inputs. This year's Resource energy says the ROI on learning is unusually high — a skill or credential you acquire now will pay dividends across the rest of this decade.`, actions: [`Identify one technical skill gap that's been slowing your execution and commit to closing it`, `Find one mentor or senior practitioner to learn from directly — not a course, a person`] },
+      Pressure:  { headline: `Prove it under constraints`, body: `Wealth decade wants results. Pressure year means the constraints are real and the stakes are high. This combination builds the most credible builders — the ones who shipped when it was hard.`, actions: [`Pick the hardest problem on your plate and move it first this quarter`, `Set a public commitment to one deliverable with a real deadline — accountability accelerates execution`] },
+    },
+    Expression: {
+      Rival:     { headline: `Show work in a competitive field`, body: `Visibility decade, comparison year. Your instinct might be to wait until it's perfect — that's the wrong move. The Expression decade is opening a window and the Rival year is full of people walking through it. Go now, iterate publicly.`, actions: [`Publish something this month — a project, article, or detailed post about what you're building`, `Enter one competitive context: hackathon, open application, public review. Rival years sharpen through exposure.`] },
+      Wealth:    { headline: `Convert visibility to income`, body: `You've been building something worth showing. Now the annual energy supports converting that into real returns. Don't let this year pass without attaching a number to your work.`, actions: [`Identify your most visible skill and price it — freelance rate, consulting scope, product idea`, `Have one conversation about money with someone who might hire or pay you`] },
+    },
+    Resource: {
+      Peer:      { headline: `Learn alongside people`, body: `Foundation decade, community year. The fastest way to build deep skill right now is inside a cohort, not alone. Find the room with people a few years ahead of you and get in it.`, actions: [`Identify one program, community, or cohort in your field worth joining this year`, `Find one person whose career is 5 years ahead of yours and ask for a single conversation`] },
+      Expression:{ headline: `Document what you're learning`, body: `You're in a foundation decade — which means the learning is real. Expression year means sharing it publicly has unusually high returns. Writing about what you're figuring out is both how you process it and how you build reputation simultaneously.`, actions: [`Start a minimal writing practice: one thing you learned this week, published somewhere`, `Pick one project you're working on and write up what you've figured out — even half-formed`] },
+    },
+  },
+  analyst: {
+    Wealth: {
+      Expression:{ headline: `Publish what you know`, body: `Applied research decade, visibility year. The combination that turns analysts into thought leaders. What you've been figuring out in private is ready for an audience — and this year's energy makes the publishing land.`, actions: [`Write and publish one piece of analysis you've been sitting on`, `Identify one decision-maker who should read your work and send it to them directly`] },
+      Rival:     { headline: `Defend your conclusions`, body: `Your analysis needs to survive contact with people who disagree. Rival year in a Wealth decade means the debates are productive — they pressure-test your work and raise your profile. Don't avoid the argument.`, actions: [`Take one position publicly and defend it when challenged — a post, a comment, a talk`, `Find the smartest person who disagrees with you on something important and have the conversation`] },
+      Authority: { headline: `Step into advisory roles`, body: `Execution decade, structure year. This is when the analyst stops informing decisions and starts making them — or being officially recognized as the person who should. Push for the formal role.`, actions: [`Identify one committee, board, or advisory role in your field and apply or ask to be considered`, `Volunteer to own one consequential analytical project at work with full decision authority`] },
+      Peer:      { headline: `Find your intellectual peers`, body: `Applied research decade gains depth through exchange. Peer year means the right intellectual partners are findable right now. The analyst who has a thinking partner compounds faster than the one working alone.`, actions: [`Find one person who thinks rigorously about the same problems you do and propose a regular exchange`, `Join or start one small research group, reading group, or study cohort`] },
+    },
+    Expression: {
+      Wealth:    { headline: `Turn analysis into product`, body: `Publication decade, execution year. This combination builds the analyst who earns from their thinking — newsletter, consulting, research product. The output channel is open and the year supports monetizing it.`, actions: [`Define one way your analytical work could generate direct income — even a small experiment`, `Publish one piece and include a clear call to action (hire me, reply if this resonates, follow for more)`] },
+      Rival:     { headline: `Sharpen your voice through opposition`, body: `Visibility decade, challenge year. The most distinctive analytical voices are forged when they take positions and defend them. This year rewards having a perspective, not just reporting findings.`, actions: [`Write one piece that takes a clear position on a contested question in your field`, `Respond directly to an analysis you disagree with — publicly, with rigor`] },
+      Pressure:  { headline: `Write under deadline`, body: `Expression decade with high-pressure year. Your best analytical writing might come from constraints right now — a hard deadline, a live audience, a specific problem. Stop waiting for the perfect conditions.`, actions: [`Commit to publishing one piece per month for the next quarter — no exceptions`, `Pitch yourself to speak or present somewhere. Pressure year makes the preparation intense but the output worth it.`] },
+    },
+    Resource: {
+      Mentor:    { headline: `Go deep on the unconventional`, body: `Foundation decade, intuition year. The signal you've been following that doesn't quite fit the mainstream — this is the year to chase it seriously. The combination supports building expertise in something before it's obvious.`, actions: [`Identify the most contrarian research question you're genuinely curious about and spend serious time on it`, `Find one practitioner who works in a non-obvious corner of your field and learn from them`] },
+      Peer:      { headline: `Learn in community`, body: `Depth decade, collaboration year. The fastest path to mastery right now runs through peers, not solo study. Find the room where people are working on the same hard problems.`, actions: [`Identify one academic, professional, or online community doing serious work in your area`, `Propose one collaborative project with someone whose expertise complements yours`] },
+    },
+  },
+  connector: {
+    Wealth: {
+      Expression:{ headline: `Teach what you know publicly`, body: `Conversion decade, visibility year. Your relational knowledge is ready to scale. This combination means teaching — writing, speaking, courses — earns unusually high returns right now. What you make clear for others is also what makes people want to work with you.`, actions: [`Identify one thing you understand about people or systems that others find confusing — and explain it publicly`, `Create one piece of content from your experience: a thread, a talk, a short guide`] },
+      Rival:     { headline: `Compete through relationships`, body: `Conversion decade, comparison year. The connector's competitive advantage is always the same: you know more people, and those people are genuinely glad to hear from you. Rival years sort out who has real relationships versus transactional ones.`, actions: [`Reach out to 10 people you haven't spoken to in 6+ months — no ask, just genuine reconnection`, `Identify one competitive situation you're in and ask: who in your network could change this outcome?`] },
+      Authority: { headline: `Formalize your influence`, body: `Your relational capital is at a point where it should translate into formal recognition. Wealth decade plus Authority year means the timing is right to turn trust into title, scope, or institutional role.`, actions: [`Identify one leadership role you're informally doing and make the case for doing it officially`, `Sponsor or champion someone else publicly — Authority year rewards visible investment in others`] },
+      Peer:      { headline: `Rebuild the core network`, body: `Conversion decade, community year. This is the year to deepen the relationships that actually matter — not add to the list. Quality over quantity has an unusually high ROI right now.`, actions: [`Identify your 10 most important professional relationships and make sure each one is active`, `Host or organize something small — a dinner, a call, a workshop. Peer year makes people want to show up.`] },
+    },
+    Expression: {
+      Wealth:    { headline: `Monetize your network`, body: `Teaching decade, execution year. This combination specifically supports building something people pay for from your ability to connect and explain. The audience is there. The channel is open. What's the product?`, actions: [`Identify one paid offering that uses your connecting or teaching skill`, `Make one introduction this month that creates real value for both parties — and let them know it came from you`] },
+      Rival:     { headline: `Make yourself the obvious choice`, body: `Visibility decade, competitive year. Others are making noise — your move is to be the clearest, most useful, most responsive person in the room. Rival years reward consistency and genuine helpfulness over flashiness.`, actions: [`Identify one professional context where you want to be better known and show up there consistently for 90 days`, `Write or share something helpful in your field every week this quarter`] },
+    },
+    Resource: {
+      Peer:      { headline: `Find mentors who will invest in you`, body: `Foundation decade, community year. The right people to learn from right now are findable — and Peer year means they're open to exchange, not just one-way teaching. Look for the relationship where you bring something too.`, actions: [`Identify 3 people you want to learn from and find a genuine way to be useful to them first`, `Ask explicitly for a mentorship or advisory relationship with someone whose career you admire`] },
+    },
+  },
+  creator: {
+    Wealth: {
+      Rival:     { headline: `Ship while being compared`, body: `Creative business decade, comparison year. Your instinct is to wait until it's better. The Rival year is full of other creators shipping. The decade says your work converts — but only if it's out there. Imperfect and published beats perfect and private every time this year.`, actions: [`Set a specific date in the next 30 days to publish, launch, or share something you've been holding`, `Submit your work to one competitive context: a call for submissions, a pitch, a public review`] },
+      Expression:{ headline: `Make more, show more`, body: `The decade wants your work to convert into income. The year wants you to be visible. This combination is the creative's best alignment — lean into volume right now. The output itself is the marketing.`, actions: [`Commit to one public creative output per week for the next 6 weeks`, `Identify your best existing work and actively share it — not just post it, put it in front of specific people`] },
+      Authority: { headline: `Lead creatively`, body: `Commercial decade, structure year. This combination moves creators into creative direction — not just making things, but setting the standard for how things get made. Push for the senior role or the project with real creative ownership.`, actions: [`Identify one project where you could have true creative authority (not execution) and pursue it`, `Write down your creative principles — what you stand for, what you won't compromise. Authority roles require you to articulate this.`] },
+      Peer:      { headline: `Build with your creative community`, body: `Conversion decade, community year. The solo creator model undersells this combination. Collaboration, co-creation, and building with peers amplifies what your decade is already supporting. Who are you making things with?`, actions: [`Identify one creator whose work complements yours and propose a collaboration`, `Find or create one small creative community — even 3-5 people meeting regularly around shared work`] },
+      Windfall:  { headline: `Follow the unexpected channel`, body: `Your decade is about creative work converting to real returns. Windfall year means the platform or audience that finds you might not be the one you expected. Stay open — and make sure you're findable across multiple channels.`, actions: [`Publish or share work on one platform you haven't used seriously before`, `Say yes to one unexpected creative opportunity this quarter, even if it's outside your usual lane`] },
+    },
+    Expression: {
+      Rival:     { headline: `Develop your voice through contrast`, body: `Prolific output decade, competitive year. The Rival energy isn't a threat — it's a mirror. Seeing what other creators are making clarifies what only you can make. Use the comparison to sharpen your perspective, then ship from that sharper place.`, actions: [`Identify what makes your creative work different from the 5 creators closest to your lane — write it down`, `Make one piece that could only come from you. Not a genre piece. Your actual perspective.`] },
+      Wealth:    { headline: `Turn output into income`, body: `Expression decade wants you making and showing. Wealth year wants the making to convert. This is when the prolific creator starts attaching prices to their output — and finding out what lands.`, actions: [`Identify your most-engaged creative output and design one way to monetize it`, `Raise your rate or price for one offering by 20%. Expression decade plus Wealth year supports it.`] },
+      Output:    { headline: `Experiment aggressively`, body: `Both your decade and this year push toward breaking existing forms. This combination is rare — when the internal drive to experiment and the external energy supporting it align. Make the weird thing. The unconventional output from this window is often what defines a career.`, actions: [`Identify one format, medium, or genre you've never tried and make something in it this quarter`, `Abandon one creative constraint you've been treating as fixed and see what happens`] },
+    },
+    Resource: {
+      Mentor:    { headline: `Follow the strange curiosity`, body: `Deep study decade, intuitive year. The reference that doesn't make obvious sense, the discipline that seems unrelated — this combination is specifically good for building the creative vocabulary that no one else has. Study the thing others overlook.`, actions: [`Identify one non-obvious creative influence and spend serious time with it this quarter`, `Make one piece directly inspired by a source outside your usual references`] },
+      Expression:{ headline: `Document the learning publicly`, body: `You're building foundational creative skill this decade. Expression year means sharing the process earns unusually high returns — not the finished work, the figuring-out. Process content from a Resource decade is some of the most valuable a creator can make.`, actions: [`Share one behind-the-scenes look at your creative process — how you're learning, what you're figuring out`, `Start a minimal public log of your creative development: weekly or monthly, short, honest`] },
+    },
+  },
+};
+
+// Generate decennial luck cycle pillars (8 decades)
+function calcDayunPillars(monthSI, monthBI, isForward) {
+  return Array.from({length: 8}, (_, i) => {
+    const dir = isForward ? i + 1 : -(i + 1);
+    const si = ((monthSI + dir) % 10 + 10) % 10;
+    const bi = ((monthBI + dir) % 12 + 12) % 12;
+    return { si, bi, el: STEM_EL[si], pol: STEM_POL[si], branchEl: BRANCH_EL[bi] };
+  });
+}
+
+// Full timing calculation
+function calcTiming(bazi, birthYear, currentAge, gender) {
+  const { pillars, dm } = bazi;
+  const mSI = pillars.month.s, mBI = pillars.month.b;
+
+  // Direction rule (Zi Ping methodology):
+  //   Yang DM + Male   → forward (순행)
+  //   Yang DM + Female → backward (역행)
+  //   Yin  DM + Male   → backward (역행)
+  //   Yin  DM + Female → forward (순행)
+  const isYang = dm.pol === 'Yang';
+  const isMale = gender === 'male';
+  const isForward = (isYang && isMale) || (!isYang && !isMale);
+
+  // Accurate start age: days between birth and nearest jieqi boundary ÷ 3
+  // Use actual JIEQI data — same data used for month pillar calculation
+  const bUTC  = bazi.birthUTC;
+  const bYear = bazi.birthYear || birthYear;
+  const sol   = bazi.jieqiSol ?? 11; // month index in jieqi steps (0-11)
+
+  // steps mapping: sol index → jieqi index in JIEQI array
+  // sol=11 means before year's first jieqi (lichun), sol=0..10 = steps[0..10]
+  const jqSteps = [1,2,3,4,5,6,7,8,9,10,11,0]; // jieqi indices for sol 0..11
+  const curJqIdx  = jqSteps[sol] ?? 0;
+  const prevJqIdx = jqSteps[(sol - 1 + 12) % 12] ?? 11;
+  const nextJqIdx = jqSteps[(sol + 1) % 12] ?? 1;
+
+  // Get timestamps of surrounding jieqi
+  // current month's jieqi start (this is prevBoundary for birth month)
+  let prevJqTS = null, nextJqTS = null;
+  try {
+    // Previous boundary = start of current month
+    const prevYr = sol === 11 ? bYear - 1 : bYear;
+    const prevIdx = sol === 11 ? 0 : curJqIdx;
+    const pd = JIEQI[prevYr];
+    if (pd && pd[prevIdx]) { const [mo,dy,h,mi] = pd[prevIdx]; prevJqTS = Date.UTC(prevYr, mo-1, dy, h, mi); }
+
+    // Next boundary = start of next month
+    const nextYr = sol === 10 ? bYear + 1 : bYear;
+    const nextIdx = sol === 10 ? 0 : nextJqIdx;
+    const nd = JIEQI[nextYr];
+    if (nd && nd[nextIdx]) { const [mo,dy,h,mi] = nd[nextIdx]; nextJqTS = Date.UTC(nextYr, mo-1, dy, h, mi); }
+  } catch(e) {}
+
+  let daysFromJieqi = 10; // fallback
+  if (isForward && nextJqTS) {
+    daysFromJieqi = (nextJqTS - bUTC) / 86400000;
+  } else if (!isForward && prevJqTS) {
+    daysFromJieqi = (bUTC - prevJqTS) / 86400000;
+  }
+  daysFromJieqi = Math.max(0.5, Math.abs(daysFromJieqi));
+  const startAge = Math.round((daysFromJieqi / 3) * 10) / 10;
+
+  const pillarsArr = calcDayunPillars(mSI, mBI, isForward);
+  const dayuns = pillarsArr.map((p, i) => {
+    const fromAge = Math.round((startAge + i * 10) * 10) / 10;
+    const toAge   = Math.round((startAge + (i + 1) * 10) * 10) / 10;
+    const inf     = getTenInfluence(dm.el, dm.pol, p.el, p.pol);
+    const meta    = INFLUENCE_META[inf] || INFLUENCE_META['Peer'];
+    return { ...p, fromAge, toAge,
+             fromYear: birthYear + Math.floor(fromAge),
+             toYear:   birthYear + Math.floor(toAge),
+             inf, meta };
+  });
+
+  const curIdx = dayuns.findIndex(d => currentAge >= d.fromAge && currentAge < d.toAge);
+  const curIdx2 = curIdx < 0 ? 0 : curIdx;
+
+  // Annual luck: 2026 = Bing Wu year (Fire Yang stem, Fire branch)
+  const annualSI = 2, annualBI = 6; // 丙=2, 午=6
+  const annualInf  = getTenInfluence(dm.el, dm.pol, STEM_EL[annualSI], STEM_POL[annualSI]);
+  const annualMeta = INFLUENCE_META[annualInf] || INFLUENCE_META['Peer'];
+
+  return { dayuns, curIdx: curIdx2, isForward, startAge, annualInf, annualMeta };
+}
+
+
 // Pillar element boost (same as before)
 const EL_BOOST = {
   Wood:   { builder:1, creator:2 },
@@ -427,7 +909,7 @@ const EL_BOOST = {
 };
 
 // Combine MBTI scores + element boost → top 2 archetypes
-function calcArchetypes(axes, dmEl) {
+function calcArchetypes(axes, dmEl, monthBranch) {
   const mbtiS = mbtiToScores(axes);
   const elB   = EL_BOOST[dmEl] || {};
   const final = {};
@@ -1100,6 +1582,21 @@ html, body, #root {
 
 
 /* ── SHICHEN GRID ── */
+
+/* ── GENDER SELECTOR ── */
+.gender-row { display: flex; gap: 10px; margin-bottom: 6px; }
+.gender-btn {
+  flex: 1; padding: 11px 16px; background: var(--ow2);
+  border: 1px solid var(--ow3); border-radius: var(--r);
+  font-size: 13px; font-weight: 600; color: var(--ink3);
+  cursor: pointer; transition: all .15s; letter-spacing: .01em;
+}
+.gender-btn:hover { border-color: var(--gold2); color: var(--ink); }
+.gender-btn.selected {
+  background: var(--gold); border-color: var(--gold);
+  color: #fff;
+}
+
 .shichen-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1126,6 +1623,99 @@ html, body, #root {
 .sc-range { font-size: 9px; color: var(--ink3); letter-spacing: .01em; }
 
 
+
+
+/* ── ACCORDION ROLES ── */
+.role-tier-acc { margin-bottom: 8px; border: 1px solid var(--ow3); border-radius: var(--r); overflow: hidden; }
+.role-tier-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; cursor: pointer; background: var(--ow2); transition: background .15s; }
+.role-tier-header:hover { background: var(--ow3); }
+.role-tier-label { font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--ink3); }
+.role-tier-toggle { font-size: 11px; color: var(--gold3); font-weight: 600; }
+.role-preview { padding: 8px 14px 10px; display: flex; align-items: center; gap: 6px; }
+.role-preview-title { font-size: 12px; color: var(--ink2); }
+.role-preview-more { font-size: 11px; color: var(--ink4); }
+.show-more-btn { background: none; border: none; color: var(--gold3); font-size: 11px; font-weight: 600; cursor: pointer; padding: 6px 0 2px; letter-spacing: .04em; }
+.show-more-btn:hover { color: var(--gold); }
+
+/* ── TIMING CTA ── */
+.timing-cta-wrap { margin: 0 0 24px; padding: 20px 22px; background: var(--ow2); border: 1px solid var(--ow3); border-top: 2px solid var(--gold); border-radius: var(--r); }
+.timing-cta-eyebrow { font-size: 9px; letter-spacing: .18em; text-transform: uppercase; color: var(--gold3); font-weight: 700; margin-bottom: 8px; }
+.timing-cta-desc { font-size: 13px; color: var(--ink2); line-height: 1.65; margin-bottom: 16px; }
+.timing-cta-btn { background: var(--gold); color: #fff; border: none; border-radius: 6px; padding: 10px 20px; font-size: 13px; font-weight: 700; cursor: pointer; letter-spacing: .03em; transition: opacity .15s; }
+.timing-cta-btn:hover { opacity: .88; }
+
+/* ── TIMING PAGE ── */
+.timing-page { max-width: 640px; margin: 0 auto; padding: 20px 16px 60px; }
+.timing-page-eyebrow { font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--gold3); font-weight: 700; margin-bottom: 10px; }
+.timing-page-h1 { font-size: 36px; font-weight: 800; color: var(--ink); margin: 0 0 24px; letter-spacing: -.02em; }
+
+/* Decade context block */
+.tp-decade-wrap { padding: 18px 20px; background: var(--ow2); border: 1px solid var(--ow3); border-radius: var(--r); margin-bottom: 16px; }
+.tp-decade-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+.tp-decade-left { display: flex; align-items: center; gap: 12px; }
+.tp-decade-chars { font-family: var(--fk); font-size: 30px; line-height: 1; display: flex; gap: 2px; }
+.tp-decade-inf { font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 2px; }
+.tp-decade-theme { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink4); }
+.tp-decade-range { text-align: right; }
+.tp-decade-ages { font-size: 13px; font-weight: 600; color: var(--ink2); }
+.tp-decade-years { font-size: 11px; color: var(--ink4); }
+.tp-decade-body { font-size: 13px; color: var(--ink2); line-height: 1.7; margin: 0; }
+
+/* NOW focus block — the main event */
+.tp-now-wrap { padding: 20px 22px; background: var(--ow); border: 1px solid var(--ow3); border-top: 2px solid var(--gold); border-radius: var(--r); margin-bottom: 16px; }
+.tp-now-eyebrow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+.tp-now-badge { background: var(--gold); color: #fff; font-size: 9px; font-weight: 800; letter-spacing: .14em; padding: 3px 8px; border-radius: 4px; }
+.tp-now-year { font-size: 11px; color: var(--ink4); font-family: var(--fk); }
+.tp-now-inf-badge { font-size: 10px; font-weight: 700; letter-spacing: .06em; padding: 3px 9px; border-radius: 20px; border: 1px solid; }
+.tp-now-headline { font-size: 17px; font-weight: 800; color: var(--ink); margin-bottom: 10px; letter-spacing: -.01em; }
+.tp-now-body { font-size: 13px; color: var(--ink2); line-height: 1.75; margin-bottom: 18px; }
+
+/* Action items */
+.tp-actions-wrap { border-top: 1px solid var(--ow3); padding-top: 14px; }
+.tp-actions-label { font-size: 9px; letter-spacing: .16em; text-transform: uppercase; color: var(--gold3); font-weight: 700; margin-bottom: 10px; }
+.tp-action-row { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 10px; }
+.tp-action-row:last-child { margin-bottom: 0; }
+.tp-action-num { flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; background: var(--gold3)22; color: var(--gold3); font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+.tp-action-text { font-size: 13px; color: var(--ink); line-height: 1.6; font-weight: 500; }
+
+/* Next decade preview */
+.tp-next-wrap { padding: 16px 18px; background: var(--ow2); border: 1px solid var(--ow3); border-radius: var(--r); margin-bottom: 16px; opacity: .85; }
+.tp-next-label { font-size: 9px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink4); font-weight: 700; margin-bottom: 10px; }
+.tp-next-header { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
+.tp-next-chars { font-family: var(--fk); font-size: 22px; display: flex; gap: 2px; }
+.tp-next-inf { font-size: 11px; font-weight: 600; }
+.tp-next-age { font-size: 11px; color: var(--ink4); margin-left: auto; }
+.tp-next-body { font-size: 12.5px; color: var(--ink3); line-height: 1.7; margin-bottom: 10px; }
+.tp-next-hint { font-size: 11px; color: var(--ink4); font-style: italic; border-top: 1px solid var(--ow3); padding-top: 8px; }
+
+/* Timeline toggle */
+.tp-tl-toggle-wrap { margin-bottom: 8px; }
+.tp-tl-toggle-btn { background: none; border: 1px solid var(--ow3); border-radius: var(--r); color: var(--ink3); font-size: 12px; font-weight: 600; padding: 8px 14px; cursor: pointer; width: 100%; text-align: center; transition: all .15s; }
+.tp-tl-toggle-btn:hover { border-color: var(--gold2); color: var(--gold3); }
+
+/* Timeline accordion */
+.tp-timeline { border: 1px solid var(--ow3); border-radius: var(--r); overflow: hidden; margin-bottom: 16px; }
+.tp-tl-row { border-bottom: 1px solid var(--ow3); }
+.tp-tl-row:last-child { border-bottom: none; }
+.tp-tl-row.current { background: var(--gold3)0a; }
+.tp-tl-summary { display: flex; align-items: center; justify-content: space-between; padding: 11px 14px; cursor: pointer; transition: background .12s; }
+.tp-tl-summary:hover { background: var(--ow3); }
+.tp-tl-left { display: flex; align-items: center; gap: 8px; }
+.tp-tl-char { font-family: var(--fk); font-size: 18px; line-height: 1; }
+.tp-tl-inf { font-size: 11px; font-weight: 600; }
+.tp-tl-now { font-size: 9px; font-weight: 800; letter-spacing: .1em; color: var(--gold3); background: var(--gold3)22; padding: 2px 7px; border-radius: 10px; }
+.tp-tl-right { display: flex; align-items: center; gap: 10px; }
+.tp-tl-age { font-size: 12px; color: var(--ink); font-weight: 600; }
+.tp-tl-year { font-size: 10px; color: var(--ink4); }
+.tp-tl-toggle { font-size: 14px; color: var(--gold3); width: 18px; text-align: center; }
+.tp-tl-detail { padding: 4px 14px 14px 14px; }
+.tp-tl-theme { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink4); margin-bottom: 6px; }
+.tp-tl-body { font-size: 12px; color: var(--ink2); line-height: 1.65; }
+
+/* Method note *//* Method note */
+.tp-method-note { margin-top: 24px; padding: 16px 18px; background: var(--ow2); border: 1px solid var(--ow3); border-radius: var(--r); }
+.tp-method-label { font-size: 9px; letter-spacing: .16em; text-transform: uppercase; color: var(--gold3); font-weight: 700; margin-bottom: 8px; }
+.tp-method-note p { font-size: 11px; color: var(--ink4); line-height: 1.7; }
 
 /* ── DAILY ENERGY CARD ── */
 .daily-energy-card {
@@ -1179,6 +1769,47 @@ html, body, #root {
 .de-action-text {
   font-size: 13px; color: var(--ink); line-height: 1.65; font-weight: 500;
 }
+
+
+/* ── SEASONAL MODIFIER CARD ── */
+.seasonal-card {
+  margin-top: 16px;
+  padding: 16px 18px;
+  background: var(--ow2);
+  border: 1px solid var(--ow3);
+  border-radius: var(--r);
+  border-top: 2px solid var(--gold2);
+}
+.seasonal-header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  flex-wrap: wrap; gap: 8px; margin-bottom: 12px;
+}
+.seasonal-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 10px; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; padding: 4px 10px;
+  border-radius: 20px; border: 1px solid;
+}
+.seasonal-cn { font-family: var(--fk); font-size: 13px; letter-spacing: 0; }
+.seasonal-sep { opacity: .4; }
+.seasonal-meta { font-size: 11px; color: var(--ink4); text-align: right; line-height: 1.5; }
+.seasonal-style {
+  font-size: 14px; font-weight: 700; color: var(--ink);
+  margin-bottom: 6px; letter-spacing: .01em;
+}
+.seasonal-insight {
+  font-size: 13px; color: var(--ink2); line-height: 1.65; margin-bottom: 12px;
+}
+.seasonal-rows { display: flex; flex-direction: column; gap: 0; }
+.seasonal-row {
+  padding: 9px 0; border-top: 1px solid var(--ow3);
+  display: grid; grid-template-columns: 90px 1fr; gap: 12px;
+}
+.seasonal-row-label {
+  font-size: 9px; font-weight: 700; letter-spacing: .15em;
+  text-transform: uppercase; color: var(--gold3); padding-top: 2px;
+}
+.seasonal-row-text { font-size: 12px; color: var(--ink2); line-height: 1.6; }
 
 /* ── CAREER COACHING PANELS ── */
 .coach-section {
@@ -1282,6 +1913,25 @@ html, body, #root {
   padding: 12px 16px; background: var(--ow2);
   border-radius: var(--r); border-left: 2px solid var(--gold2);
 }
+
+
+/* ── ABOUT PAGE REFERENCE BOX ── */
+.about-ref-box {
+  background: var(--ow2); border: 1px solid var(--ow3);
+  border-left: 3px solid var(--gold2);
+  border-radius: var(--r); padding: 16px 18px; margin: 16px 0;
+}
+.about-ref-label {
+  font-size: 9px; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--gold3); font-weight: 700; margin-bottom: 12px;
+}
+.about-ref-list { display: flex; flex-direction: column; gap: 0; }
+.about-ref-item {
+  padding: 10px 0; border-top: 1px solid var(--ow3);
+  display: flex; flex-direction: column; gap: 3px;
+}
+.about-ref-title { font-size: 13px; font-weight: 700; color: var(--ink); }
+.about-ref-desc  { font-size: 12px; color: var(--ink3); line-height: 1.55; }
 
 /* About link in results */
 .res-footer {
@@ -1429,10 +2079,11 @@ function GatSvg({ size = 22, color = '#B8963E' }) {
 export default function App() {
   const [page, setPageRaw] = useState('form');
   const setPage = (p) => { setPageRaw(p); window.scrollTo(0, 0); };
-  const [form, setForm]   = useState({ yr:'', mo:'', dy:'', shichen:null, tz:'America/New_York', region:'America/New_York', mbti:'' });
+  const [form, setForm]   = useState({ yr:'', mo:'', dy:'', shichen:null, tz:'America/New_York', region:'America/New_York', mbti:'', gender:'' });
   const [mini, setMini]   = useState({});   // I/N/T/J booleans from mini-questions
   const [results, setRes] = useState(null);
   const [openFaq, setFaq] = useState(null);
+  const [timingData, setTimingData] = useState(null);
 
   useEffect(() => {
     const el = document.createElement('style');
@@ -1463,9 +2114,16 @@ export default function App() {
         const currentAxes = form.mbti.length === 4
           ? parseMBTI(form.mbti)
           : (Object.keys(mini).length === 4 ? mini : null);
-        const { top2: archetypes } = calcArchetypes(currentAxes, bazi.dm.el);
+        const { top2: archetypes } = calcArchetypes(currentAxes, bazi.dm.el, bazi.monthBranch);
         const stress = stressFlag(currentAxes);
-        setRes({ bazi, archetypes, stress, mbti: form.mbti || null, axes: currentAxes });
+        const seasonal = bazi.monthBranch !== undefined
+          ? getSeasonalProfile(bazi.dm.el, bazi.monthBranch)
+          : null;
+        const birthYear  = +form.yr;
+        const now        = new Date();
+        const currentAge = now.getFullYear() - birthYear;
+        const timing     = calcTiming(bazi, birthYear, currentAge);
+        setRes({ bazi, archetypes, stress, mbti: form.mbti || null, axes: currentAxes, seasonal, timing, birthYear, currentAge });
         setPage('results');
       } catch (e) {
         alert('Calculation error: ' + e.message);
@@ -1477,15 +2135,16 @@ export default function App() {
   // Ready: birth + city + (MBTI OR all 4 mini answered)
   const mbtiDone  = form.mbti.length === 4;
   const miniDone  = Object.keys(mini).length === 4;
-  const ready     = form.yr && form.mo && form.dy && form.tz && (mbtiDone || miniDone);
+  const ready     = form.yr && form.mo && form.dy && form.tz && form.gender && (mbtiDone || miniDone);
 
   return (
     <div>
       <Topbar page={page} setPage={setPage} />
       <div className="page">
-        {page === 'form'    && <FormPage form={form} up={up} mini={mini} setMini={setMini} ready={ready} mbtiDone={mbtiDone} miniDone={miniDone} compute={compute} onSetShichen={sc => up('shichen', sc)} onSetTz={tz => up('tz', tz)} />}
+        {page === 'form'    && <FormPage form={form} up={up} mini={mini} setMini={setMini} ready={ready} mbtiDone={mbtiDone} miniDone={miniDone} compute={compute} onSetShichen={sc => up('shichen', sc)} onSetTz={tz => up('tz', tz)} gender={form.gender} onSetGender={g => up('gender', g)} />}
         {page === 'loading' && <LoadingPage />}
-        {page === 'results' && results && <ResultsPage results={results} setPage={setPage} />}
+        {page === 'results' && results && <ResultsPage results={results} setPage={setPage} setTimingData={setTimingData} />}
+        {page === 'timing'  && timingData  && <TimingPage data={timingData} setPage={setPage} />}
         {page === 'about'   && <AboutPage openFaq={openFaq} setFaq={setFaq} />}
       </div>
       <footer className="site-footer">GAT 갓 · Saju × MBTI Career Coach · Not a replacement for professional guidance</footer>
@@ -1517,7 +2176,7 @@ function Topbar({ page, setPage }) {
 // ─────────────────────────────────────────────
 // FORM PAGE
 // ─────────────────────────────────────────────
-function FormPage({ form, up, mini, setMini, ready, mbtiDone, miniDone, compute, onSetShichen, onSetTz }) {
+function FormPage({ form, up, mini, setMini, ready, mbtiDone, miniDone, compute, onSetShichen, onSetTz, gender, onSetGender }) {
   const [cityQ,   setCityQ]   = useState('');
   const [cityMatches, setCityM] = useState([]);
   const [cityOpen, setCityOpen] = useState(false);
@@ -1562,6 +2221,21 @@ function FormPage({ form, up, mini, setMini, ready, mbtiDone, miniDone, compute,
           <input type="number" min="1" max="12" placeholder="6" value={form.mo} onChange={e=>up('mo',e.target.value)} /></div>
         <div className="fg"><label>Day</label>
           <input type="number" min="1" max="31" placeholder="15" value={form.dy} onChange={e=>up('dy',e.target.value)} /></div>
+      </div>
+
+      {/* ── BIOLOGICAL SEX ── */}
+      <div className="sep"><span className="sep-label">Biological Sex</span><div className="sep-line" /></div>
+      <p style={{fontSize:13,color:'var(--ink3)',lineHeight:1.65,marginBottom:14,fontWeight:300}}>
+        Used to calculate the direction of your decennial luck cycles — a core part of Four Pillars methodology.
+      </p>
+      <div className="gender-row">
+        {[{v:'male',label:'♂  Male'},{v:'female',label:'♀  Female'}].map(opt => (
+          <button key={opt.v}
+            className={"gender-btn" + (gender === opt.v ? ' selected' : '')}
+            onClick={() => onSetGender(opt.v)}>
+            {opt.label}
+          </button>
+        ))}
       </div>
 
       {/* ── BIRTH HOUR — Shichen dropdown ── */}
@@ -1818,8 +2492,66 @@ function getDailyEnergy(dmEl, archetype) {
   };
 }
 
-function ResultsPage({ results, setPage }) {
-  const { bazi, archetypes, stress, mbti, axes } = results;
+
+// ─── Accordion helper components ───────────────────
+function RoleTier({ label, roles }) {
+  const [open, setOpen] = useState(false);
+  const preview = roles[0];
+  return (
+    <div className="role-tier-acc">
+      <div className="role-tier-header" onClick={() => setOpen(o => !o)}>
+        <span className="role-tier-label">{label}</span>
+        <span className="role-tier-toggle">{open ? '−' : `${roles.length} roles +`}</span>
+      </div>
+      {!open && (
+        <div className="role-preview">
+          <span className="role-preview-title">{preview.title}</span>
+          <span className="role-preview-more">{roles.length > 1 ? ` + ${roles.length - 1} more` : ''}</span>
+        </div>
+      )}
+      {open && roles.map((r, i) => (
+        <div key={i} className="role-card">
+          <div className="role-title">{r.title}</div>
+          <div className="role-why">{r.why}</div>
+          <div className="role-path">↳ {r.path}</div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function IndustrySection({ top, rest }) {
+  const [showAll, setShowAll] = useState(false);
+  const visible = showAll ? [...top, ...rest] : top;
+  return (
+    <div className="coach-section">
+      <div className="coach-sec-label">Industry fit</div>
+      <div className="industry-list">
+        {visible.map((ind, i) => (
+          <div key={i} className="industry-row">
+            <div className="industry-meta">
+              <span className="industry-name">{ind.name}</span>
+              <div className="fit-dots">
+                {[1,2,3,4,5].map(n => (
+                  <span key={n} className={"fit-dot" + (n <= ind.fit ? ' filled' : '')} />
+                ))}
+              </div>
+            </div>
+            <div className="industry-note">{ind.note}</div>
+          </div>
+        ))}
+      </div>
+      {rest.length > 0 && (
+        <button className="show-more-btn" onClick={() => setShowAll(o => !o)}>
+          {showAll ? 'Show less ↑' : `+ ${rest.length} more industries`}
+        </button>
+      )}
+    </div>
+  );
+}
+
+function ResultsPage({ results, setPage, setTimingData }) {
+  const { bazi, archetypes, stress, mbti, axes, seasonal, timing, birthYear, currentAge } = results;
   const { pillars, dm, ec, tot, strong } = bazi;
   const [p1, p2] = archetypes;
 
@@ -1874,46 +2606,66 @@ function ResultsPage({ results, setPage }) {
               <div className="arc-desc">{a.desc}</div>
             </div>
 
-            {/* Roles — 3-tier: entry / mid / pivot */}
-            <div className="coach-section">
-              <div className="coach-sec-label">Roles to target</div>
-              {[
-                { key:'entry', label:'Entry-level  ·  0–2 yrs' },
-                { key:'mid',   label:'Mid-level   ·  3–6 yrs' },
-                { key:'pivot', label:'Senior / pivot  ·  7+ yrs' },
-              ].map(tier => a.roles[tier.key]?.length > 0 && (
-                <div key={tier.key} className="role-tier">
-                  <div className="role-tier-label">{tier.label}</div>
-                  {a.roles[tier.key].map((r,i) => (
-                    <div key={i} className="role-card">
-                      <div className="role-title">{r.title}</div>
-                      <div className="role-why">{r.why}</div>
-                      <div className="role-path">↳ {r.path}</div>
+            {/* Seasonal modifier — primary only */}
+            {idx === 0 && seasonal && (() => {
+              const mod = getSeasonalModifier(a.id, seasonal.band);
+              if (!mod) return null;
+              const bandColor = seasonal.band === 'strong' ? '#4A7C59' : seasonal.band === 'neutral' ? '#B8963E' : '#7A6A4A';
+              return (
+                <div className="seasonal-card">
+                  <div className="seasonal-header">
+                    <div className="seasonal-badge" style={{color: bandColor, borderColor: bandColor + '55', background: bandColor + '11'}}>
+                      {seasonal.label.badge}
                     </div>
-                  ))}
-                </div>
-              ))}
-            </div>
-
-            {/* Industries — fit bars */}
-            <div className="coach-section">
-              <div className="coach-sec-label">Industry fit</div>
-              <div className="industry-list">
-                {a.industries.map((ind,i) => (
-                  <div key={i} className="industry-row">
-                    <div className="industry-meta">
-                      <span className="industry-name">{ind.name}</span>
-                      <div className="fit-dots">
-                        {[1,2,3,4,5].map(n => (
-                          <span key={n} className={"fit-dot" + (n <= ind.fit ? ' filled' : '')} />
-                        ))}
-                      </div>
+                    <div className="seasonal-meta">
+                      {seasonal.monthChar} month · {seasonal.season}
                     </div>
-                    <div className="industry-note">{ind.note}</div>
                   </div>
-                ))}
-              </div>
-            </div>
+                  <div className="seasonal-style">{mod.style}</div>
+                  <p className="seasonal-insight">{mod.insight}</p>
+                  <div className="seasonal-rows">
+                    <div className="seasonal-row">
+                      <div className="seasonal-row-label">Career lens</div>
+                      <div className="seasonal-row-text">{mod.careerLens}</div>
+                    </div>
+                    <div className="seasonal-row">
+                      <div className="seasonal-row-label">Watch</div>
+                      <div className="seasonal-row-text">{mod.watch}</div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })()}
+
+            {/* Roles — accordion per tier */}
+            {(() => {
+              const TIERS = [
+                { key:'entry', label:'Entry-level · 0–2 yrs' },
+                { key:'mid',   label:'Mid-level · 3–6 yrs' },
+                { key:'pivot', label:'Senior / Pivot · 7+ yrs' },
+              ];
+              return (
+                <div className="coach-section">
+                  <div className="coach-sec-label">Roles to target</div>
+                  {TIERS.map(tier => {
+                    const roles = a.roles[tier.key];
+                    if (!roles?.length) return null;
+                    return (
+                      <RoleTier key={tier.key} label={tier.label} roles={roles} />
+                    );
+                  })}
+                </div>
+              );
+            })()}
+
+            {/* Industries — top 3 visible, rest collapsible */}
+            {(() => {
+              const top = a.industries.slice(0, 3);
+              const rest = a.industries.slice(3);
+              return (
+                <IndustrySection top={top} rest={rest} />
+              );
+            })()}
 
             {/* Seek / Avoid */}
             <div className="seek-avoid-grid">
@@ -2092,7 +2844,18 @@ function ResultsPage({ results, setPage }) {
         </div>
       )}
 
-      <div className="res-footer">
+      {/* Timing CTA */}
+      {timing && (
+        <div className="timing-cta-wrap">
+          <div className="timing-cta-eyebrow">Career Timing</div>
+          <p className="timing-cta-desc">Your Four Pillars chart encodes a sequence of decennial energy cycles — each one shaping the conditions for different kinds of career moves. See your current decade, this year, and what's coming next.</p>
+          <button className="timing-cta-btn" onClick={() => { setTimingData({ timing, bazi, archetypes, birthYear, currentAge, seasonal }); setPage('timing'); }}>
+            View your timing →
+          </button>
+        </div>
+      )}
+
+            <div className="res-footer">
         <p>Want to understand the methodology?</p>
         <button className="inline-link" onClick={() => setPage('about')}>Read how it works →</button>
       </div>
@@ -2100,6 +2863,142 @@ function ResultsPage({ results, setPage }) {
   );
 }
 
+
+
+// ─────────────────────────────────────────────────────────────
+// TIMING PAGE — Career Timing · Decennial Luck Cycles
+// ─────────────────────────────────────────────────────────────
+function TimingPage({ data, setPage }) {
+  const { timing, bazi, archetypes, birthYear, currentAge } = data;
+  const { dm } = bazi;
+  const [timelineOpen, setTimelineOpen] = useState(false);
+  const [openTlIdx, setOpenTlIdx] = useState(null);
+  const primaryId = archetypes[0]?.id;
+  const { dayuns, curIdx, isForward, annualInf, annualMeta } = timing;
+
+  const cur  = dayuns[curIdx];
+  const next = dayuns[curIdx + 1];
+
+  const decadeCtx  = DECADE_CONTEXT[primaryId]?.[cur.inf] || '';
+  const crossRead  = getCrossReading(primaryId, cur.inf, annualInf);
+  const nextCtx    = next ? DECADE_CONTEXT[primaryId]?.[next.inf] : null;
+
+  return (
+    <div className="timing-page fade">
+      <button className="res-back" onClick={() => setPage('results')}>← Back to report</button>
+
+      <div className="timing-page-eyebrow">GAT · Career Timing</div>
+      <h1 className="timing-page-h1">Your Timing</h1>
+
+      {/* ── DECADE CONTEXT ── */}
+      <div className="tp-decade-wrap">
+        <div className="tp-decade-header">
+          <div className="tp-decade-left">
+            <div className="tp-decade-chars">
+              <span style={{color: EL_COLOR[cur.el]}}>{STEMS[cur.si]}</span>
+              <span style={{color: EL_COLOR[cur.branchEl]}}>{BRANCHES[cur.bi]}</span>
+            </div>
+            <div>
+              <div className="tp-decade-inf" style={{color: cur.meta.color}}>{cur.meta.label}</div>
+              <div className="tp-decade-theme">{cur.meta.theme}</div>
+            </div>
+          </div>
+          <div className="tp-decade-range">
+            <div className="tp-decade-ages">{cur.fromAge.toFixed(0)}–{cur.toAge.toFixed(0)} yrs</div>
+            <div className="tp-decade-years">{cur.fromYear}–{cur.toYear}</div>
+          </div>
+        </div>
+        <p className="tp-decade-body">{decadeCtx}</p>
+      </div>
+
+      {/* ── NOW FOCUS: cross-reading ── */}
+      <div className="tp-now-wrap">
+        <div className="tp-now-eyebrow">
+          <span className="tp-now-badge">NOW</span>
+          <span className="tp-now-year">2026 · 丙午</span>
+          <div className="tp-now-inf-badge" style={{background: annualMeta.color+'1a', color: annualMeta.color, borderColor: annualMeta.color+'44'}}>
+            {annualMeta.label} year · {annualMeta.theme}
+          </div>
+        </div>
+
+        <div className="tp-now-headline">{crossRead.headline}</div>
+        <p className="tp-now-body">{crossRead.body}</p>
+
+        <div className="tp-actions-wrap">
+          <div className="tp-actions-label">Do these now</div>
+          {crossRead.actions.map((action, i) => (
+            <div key={i} className="tp-action-row">
+              <div className="tp-action-num">{i + 1}</div>
+              <div className="tp-action-text">{action}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* ── NEXT DECADE ── */}
+      {next && nextCtx && (
+        <div className="tp-next-wrap">
+          <div className="tp-next-label">Coming up · from {next.fromYear}</div>
+          <div className="tp-next-header">
+            <span className="tp-next-chars">
+              <span style={{color: EL_COLOR[next.el]+'99'}}>{STEMS[next.si]}</span>
+              <span style={{color: EL_COLOR[next.branchEl]+'99'}}>{BRANCHES[next.bi]}</span>
+            </span>
+            <span className="tp-next-inf" style={{color: next.meta.color+'99'}}>{next.meta.label} · {next.meta.theme}</span>
+            <span className="tp-next-age">{next.fromAge.toFixed(0)}–{next.toAge.toFixed(0)} yrs</span>
+          </div>
+          <p className="tp-next-body">{nextCtx}</p>
+          <div className="tp-next-hint">What you build in the current decade determines what you have available to execute in this one.</div>
+        </div>
+      )}
+
+      {/* ── FULL TIMELINE (collapsible) ── */}
+      <div className="tp-tl-toggle-wrap">
+        <button className="tp-tl-toggle-btn" onClick={() => setTimelineOpen(o => !o)}>
+          {timelineOpen ? 'Hide full cycle ↑' : 'View all decades ↓'}
+        </button>
+      </div>
+      {timelineOpen && (
+        <div className="tp-timeline">
+          {dayuns.map((d, i) => {
+            const isCur  = i === curIdx;
+            const ctx    = DECADE_CONTEXT[primaryId]?.[d.inf] || '';
+            const isOpen = openTlIdx === i;
+            return (
+              <div key={i} className={"tp-tl-row" + (isCur ? ' current' : '')}>
+                <div className="tp-tl-summary" onClick={() => setOpenTlIdx(isOpen ? null : i)}>
+                  <div className="tp-tl-left">
+                    <span className="tp-tl-char" style={{color: EL_COLOR[d.el]}}>{STEMS[d.si]}</span>
+                    <span className="tp-tl-char" style={{color: EL_COLOR[d.branchEl]}}>{BRANCHES[d.bi]}</span>
+                    <span className="tp-tl-inf" style={{color: d.meta.color}}>{d.meta.label}</span>
+                    {isCur && <span className="tp-tl-now">NOW</span>}
+                  </div>
+                  <div className="tp-tl-right">
+                    <span className="tp-tl-age">{d.fromAge.toFixed(0)}–{d.toAge.toFixed(0)}</span>
+                    <span className="tp-tl-year">{d.fromYear}–{d.toYear}</span>
+                    <span className="tp-tl-toggle">{isOpen ? '−' : '+'}</span>
+                  </div>
+                </div>
+                {isOpen && (
+                  <div className="tp-tl-detail">
+                    <div className="tp-tl-theme">{d.meta.theme}</div>
+                    <p className="tp-tl-body">{ctx}</p>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      {/* ── METHOD NOTE ── */}
+      <div className="tp-method-note">
+        <div className="tp-method-label">How this is calculated</div>
+        <p>Decennial cycles begin at an age determined by the number of days between birth and the nearest Jieqi (solar term) boundary ÷ 3 (3 days = 1 year). Direction: Yang Day Master + Male or Yin Day Master + Female runs forward (順行); the reverse runs backward (逆行). Your Day Master is {dm.char} ({dm.el}, {dm.pol}) — cycles run {isForward ? 'forward' : 'backward'}. The "influence" describes the relationship between your Day Master and the stem of each decade.</p>
+      </div>
+    </div>
+  );
+}
 
 // ─────────────────────────────────────────────
 // ABOUT
@@ -2118,6 +3017,8 @@ function AboutPage({ openFaq, setFaq }) {
       a: `Custom questionnaires are answered differently depending on mood, stress level, and context — making results inconsistent. MBTI is a self-identity that people carry stably over time. Combined with the Four Pillars chart, it produces a more reliable profile than any on-the-spot questionnaire.` },
     { q: `Is GAT the same as Western astrology or MBTI?`,
       a: `No. Four Pillars is a deterministic solar calendar system — purely mathematical, with no planets or archetypes imposed externally. MBTI is self-reported personality typing. GAT combines astronomical calculation (the chart) with self-reported personality type (MBTI) to produce a single integrated result.` },
+    { q: `Does the seasonal theory apply differently in the Southern Hemisphere?`,
+      a: `No — and this is a common misconception. BaZi seasonal months are defined by Jieqi (절기) solar terms, which track the Earth's position relative to the Sun. Lichun (立春) is always around February 4 regardless of where you were born. The system uses astronomical time, not local physical seasons. A person born in Sydney in July is in the same 午月 (Fire season) as someone born in Seoul in July.` },
   ];
 
   return (
@@ -2153,6 +3054,43 @@ function AboutPage({ openFaq, setFaq }) {
             </div>
           ))}
         </div>
+      </div>
+
+      <div className="about-sec">
+        <h2 className="about-sec-h">Seasonal Strength Theory <span className="about-kr">왕상휴수사</span></h2>
+        <p className="about-p">
+          One of the most important interpretive layers in Four Pillars is <strong>旺相休囚死</strong> (Wang Xiang Xiu Qiu Si) — the theory of seasonal elemental strength. Each element has a peak season, a supported season, a resting season, and seasons of restraint or exhaustion.
+        </p>
+        <p className="about-p">
+          The month of birth determines which season the Day Master element was born into. A Wood Day Master born in spring (寅卯辰 months) is 旺 (Wang) — at peak strength. The same Wood element born in autumn is 囚死 — restrained by Metal, the controlling element. This changes not what you are, but how your energy moves and where it's best directed.
+        </p>
+        <p className="about-p">
+          GAT uses this to produce a <strong>seasonal style modifier</strong> layered on top of your archetype — same Builder or Creator, different operational mode depending on whether your element is in-season (amplified and outward) or out-of-season (conserved and internal).
+        </p>
+        <div className="about-ref-box">
+          <div className="about-ref-label">Classical sources for this theory</div>
+          <div className="about-ref-list">
+            <div className="about-ref-item">
+              <span className="about-ref-title">三命通會 Sanming Tonghui</span>
+              <span className="about-ref-desc">Ming dynasty (c. 1550). The most comprehensive classical BaZi compendium. Primary source for 旺相休囚死 tables.</span>
+            </div>
+            <div className="about-ref-item">
+              <span className="about-ref-title">淵海子平 Yuanhai Ziping</span>
+              <span className="about-ref-desc">Song dynasty (c. 1200). Foundational text establishing Day Master as the central reference point for chart interpretation.</span>
+            </div>
+            <div className="about-ref-item">
+              <span className="about-ref-title">滴天髓 Di Tian Sui</span>
+              <span className="about-ref-desc">Ming/Qing dynasty. Advanced text on Day Master strength assessment and its relationship to useful elements (用神 Yongsheng).</span>
+            </div>
+            <div className="about-ref-item">
+              <span className="about-ref-title">子平真詮 Ziping Zhengquan</span>
+              <span className="about-ref-desc">Shen Xiaozhan, Qing dynasty (1796). Systematic methodology for assessing seasonal strength and its practical implications.</span>
+            </div>
+          </div>
+        </div>
+        <p className="about-p" style={{fontSize:11, color:'var(--ink4)', lineHeight:1.6, marginTop:8}}>
+          Note: Seasonal strength in BaZi is calculated from solar calendar month (절기 Jieqi boundaries), not the Gregorian calendar month. It is hemisphere-independent — the calculation follows the Earth's solar position, not local physical seasons.
+        </p>
       </div>
 
       <div className="about-sec">
